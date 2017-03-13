@@ -1,0 +1,49 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+
+body{
+  margin: 0;
+  font-family: 'Exo 2', sans-serif;
+}
+
+.search div, .search input {
+  width: 100%;
+}
+
+.search input {
+  border: none;
+  border-bottom: 2px solid rgb(243, 139, 114);
+  outline: none;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+}
+
+.asad_class{
+  text-align: center;
+  color: green;
+  background-color: black;
+}
+
+
+.footer{
+  color: white;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background: #524C4C;
+}
+
+.footer p{
+  text-align: center;
+}
+
+.footer .logo{
+  height: 25px;
+  width: auto;
+}
+.footer .soundcloud{
+  height: 25px;
+  width: auto;
+}
