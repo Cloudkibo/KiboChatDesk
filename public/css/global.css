@@ -128,12 +128,70 @@ html { font-family: sans-serif; /* 1 */ line-height: 1.15; /* 2 */ -ms-text-size
     }
     .message-input{
       bottom: 0;
-      position: fixed;
-      width: 65%;
+      width: 100%;
+    }
+    .position-relative{
+      position: relative;
     }
     .conv-container{
-
+      display: block;
     }
+    .talk-bubble {
+    	width: 300px;
+      margin-bottom: 10px;
+    	height: auto;
+    	background-color: #F4F2F5;
+      display: block;
+    }
+    .round{
+      border-radius: 20px;
+    	-webkit-border-radius: 20px;
+    	-moz-border-radius: 20px;
+    }
+    .talktext{
+      padding: 1em;
+    	text-align: left;
+      line-height: 1.5em;
+    }
+    .message_out{
+      float: right;
+    }
+    .message_in{
+      float: left;
+    }
+    .full-width{
+      display: inline-block;
+    }
+    .info-box{
+      background-color: #F8F8F8;
+      padding: 25px;
+    }
+    .user {
+      display: inline-block;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    }
+    .one {
+      background-image: url('http://placehold.it/350x150');
+    }
+    .clearfix:after {
+      clear: both;
+      content: ".";
+      display: block;
+      height: 0;
+      visibility: hidden;
+    }
+    .clearfix {
+      display: inline-block;
+    }
+    .clearfix {
+      display: block;
+    }
+
 
 
 
