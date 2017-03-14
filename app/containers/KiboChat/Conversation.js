@@ -1,8 +1,8 @@
 import React from 'react';
-import {ButtonToolbar, NavDropdown, MenuItem, Navbar, Nav } from 'react-bootstrap';
+import { ButtonToolbar, NavDropdown, MenuItem, Navbar, Nav } from 'react-bootstrap';
 
 class Conversation extends React.Component {
-  render(){
+  render() {
     return(
       <div>
         <div>
