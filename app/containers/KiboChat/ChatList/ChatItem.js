@@ -1,8 +1,8 @@
 import React from 'react';
 
 class ChatItem extends React.Component {
-  render(){
-    return(
+  render() {
+    return (
         <div>
           <img className="pull-left margin-right-small br-100 ba b--black-10" src={'./public/img/android.png'} alt="DP" width="60" height="60" />
             <span className="pull-right ">date </span>
@@ -13,7 +13,7 @@ class ChatItem extends React.Component {
             </div>
 
         </div>
-    )
+    );
   }
 }
 
