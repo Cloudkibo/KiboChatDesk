@@ -1,6 +1,6 @@
 import React from 'react';
-import ChatList from './ChatList';
-import Conversation from './Conversation';
+import ChatList from './ChatList/ChatList';
+import Conversation from './Conversation/Conversation';
 import Contacts from '../Contacts/Contacts';
 
 class KiboChat extends React.Component {
@@ -8,7 +8,7 @@ class KiboChat extends React.Component {
     return (
     <div className="scrollbar-disable">
       <div className="col-md-4">
-        <Contacts />
+        <ChatList />
       </div>
       <div className="col-md-8">
         <Conversation />

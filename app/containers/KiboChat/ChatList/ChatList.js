@@ -31,7 +31,7 @@ class ChatList extends React.Component {
           <input type="text" className="mt4 mb4 form-control" placeholder="Search" />
         </div>
         <div className="scrollbar-enable">
-          <ul className="list-unstyled">
+          <ul className="list-unstyled pr5">
                 <li className="">
                   {items}
                 </li>
