@@ -9,7 +9,7 @@ class DemoComp extends React.Component {
         this.props.socket.on('connect', () => {
           console.log('connected to socket server');
           const data = {
-            phone: '+923323800399'
+            phone: '+923341366328'
           };
           this.props.socket.emit('join_platform_room', data);
         });
@@ -19,6 +19,7 @@ class DemoComp extends React.Component {
         });
 
         this.props.socket.on('joined_platform_room', (data) => {
+          console.log('debug line called');
           console.log(`joined platform room: ${data}`);
         });
 

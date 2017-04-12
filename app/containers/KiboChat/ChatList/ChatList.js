@@ -5,8 +5,9 @@ import {ButtonToolbar, DropdownButton, MenuItem} from 'react-bootstrap';
 class ChatList extends React.Component {
   render(){
     var items = [];
-    for (var i = 0; i < 9; i++) {
-      items.push(<ChatItem />);
+    console.log('render function called');
+    for (var i = 0; i < this.props.chatListData.data.length; i++) {
+      items.push(<ChatItem listItemData={this.props.chatListData.data[i]} />);
     }
     return(
       <div>
