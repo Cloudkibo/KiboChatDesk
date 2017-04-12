@@ -1,0 +1,1 @@
+export const INTIAL_DATA_LOAD = 'INTIAL_DATA_LOAD';

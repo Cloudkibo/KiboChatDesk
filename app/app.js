@@ -27,7 +27,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <DemoComp socket={socket} />
+      //<DemoComp socket={socket} />
+      <KiboChat socket={socket} />
     );
   }
 }
