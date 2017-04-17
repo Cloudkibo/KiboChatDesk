@@ -3,12 +3,32 @@ import ChatItem from './ChatItem';
 import {ButtonToolbar, DropdownButton, MenuItem} from 'react-bootstrap';
 
 class ChatList extends React.Component {
+
+  constructor(props) {
+  super(props);
+  this.state = {
+    searchValue: ''
+  };
+  this.handleChange = this.handleChange.bind(this);
+  }
+
   render(){
     var items = [];
     console.log('render function called');
-    for (var i = 0; i < this.props.chatListData.data.length; i++) {
-      items.push(<ChatItem listItemData={this.props.chatListData.data[i]} />);
+    if (this.state.searchValue === '') {
+      for (var i = 0; i < this.props.chatListData.data.length; i++) {
+        items.push(<ChatItem listItemData={this.props.chatListData.data[i]} />);
+      }
+    } else {
+      for (var i = 0; i < this.props.chatListData.data.length; i++) {
+        if (this.props.chatListData.data[i].display_name.includes(this.state.searchValue) ||
+           this.props.chatListData.data[i].msg.includes(this.state.searchValue)){
+          items.push(<ChatItem listItemData={this.props.chatListData.data[i]} />);
+        }
+      }
     }
+
+
     return(
       <div>
         <div>
@@ -29,7 +49,7 @@ class ChatList extends React.Component {
               </div>
             </div>
           </div>
-          <input type="text" className="mt4 mb4 form-control" placeholder="Search" />
+          <input type="text" className="mt4 mb4 form-control" placeholder="Search" onChange={this.handleChange} />
         </div>
         <div className="scrollbar-enable">
           <ul className="list-unstyled pr5">
@@ -41,6 +61,14 @@ class ChatList extends React.Component {
       </div>
     )
   }
+
+  handleChange (evt) {
+    this.setState({
+      searchValue: evt.target.value
+    });
+    console.log(evt.target.value);
+  }
+
 }
 
 export default ChatList;
