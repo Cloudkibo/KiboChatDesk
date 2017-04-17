@@ -2,6 +2,7 @@ import React from 'react';
 import ChatList from './ChatList/ChatList';
 import Conversation from './Conversation/Conversation';
 import Contacts from '../Contacts/Contacts';
+import CreateGroup from './CreateGroup/CreateGroup';
 
 class KiboChat extends React.Component {
 
@@ -52,9 +53,10 @@ class KiboChat extends React.Component {
     <div className="scrollbar-disable">
       <div className="col-md-4">
         {
-          this.state.visible && 
+          this.state.visible &&
           <ChatList chatListData={this.state.chatListData} />
         }
+        {/*<CreateGroup />*/}
       </div>
       <div className="col-md-8">
         <Conversation />
