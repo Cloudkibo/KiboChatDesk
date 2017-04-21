@@ -21,8 +21,7 @@ class ChatList extends React.Component {
       }
     } else {
       for (var i = 0; i < this.props.chatListData.data.length; i++) {
-        if (this.props.chatListData.data[i].display_name.includes(this.state.searchValue) ||
-           this.props.chatListData.data[i].msg.includes(this.state.searchValue)){
+        if (this.props.chatListData.data[i].display_name.includes(this.state.searchValue)){
           items.push(<ChatItem listItemData={this.props.chatListData.data[i]} />);
         }
       }

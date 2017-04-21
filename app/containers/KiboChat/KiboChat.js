@@ -57,6 +57,7 @@ class KiboChat extends React.Component {
           <ChatList chatListData={this.state.chatListData} />
         }
         {/*<CreateGroup />*/}
+        {/*<Contacts />*/}
       </div>
       <div className="col-md-8">
         <Conversation />
