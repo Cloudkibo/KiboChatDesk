@@ -21,6 +21,7 @@ class Conversation extends React.Component {
             </Navbar.Header>
             <Nav>
                 <NavDropdown title="Settings" id="basic-nav-dropdown">
+                  //Search will be controlled from here once chat data is connected to it.
                   <MenuItem eventKey="1">Action</MenuItem>
                   <MenuItem eventKey="2">Another action</MenuItem>
                   <MenuItem eventKey="3">Something else here</MenuItem>
