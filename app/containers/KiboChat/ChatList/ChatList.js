@@ -1,26 +1,33 @@
+import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
 import React from 'react';
 import ChatItem from './ChatItem';
-import {ButtonToolbar, DropdownButton, MenuItem} from 'react-bootstrap';
 
 class ChatList extends React.Component {
 
   constructor(props) {
-  super(props);
-  this.state = {
-    searchValue: ''
-  };
-  this.handleChange = this.handleChange.bind(this);
+    super(props);
+    this.state = {
+      searchValue: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  render(){
-    var items = [];
+  handleChange(evt) {
+    this.setState({
+      searchValue: evt.target.value
+    });
+    console.log(evt.target.value);
+  }
+
+  render() {
+    let items = [];
     console.log('render function called');
     if (this.state.searchValue === '') {
-      for (var i = 0; i < this.props.chatListData.data.length; i++) {
+      for (let i = 0; i < this.props.chatListData.data.length; i++) {
         items.push(<ChatItem listItemData={this.props.chatListData.data[i]} />);
       }
     } else {
-      for (var i = 0; i < this.props.chatListData.data.length; i++) {
+      for (let i = 0; i < this.props.chatListData.data.length; i++) {
         if (this.props.chatListData.data[i].display_name.includes(this.state.searchValue)){
           items.push(<ChatItem listItemData={this.props.chatListData.data[i]} />);
         }
@@ -28,7 +35,7 @@ class ChatList extends React.Component {
     }
 
 
-    return(
+    return (
       <div>
         <div>
           <div>
@@ -58,14 +65,7 @@ class ChatList extends React.Component {
           </ul>
         </div>
       </div>
-    )
-  }
-
-  handleChange (evt) {
-    this.setState({
-      searchValue: evt.target.value
-    });
-    console.log(evt.target.value);
+    );
   }
 
 }

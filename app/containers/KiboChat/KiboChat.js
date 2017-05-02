@@ -7,12 +7,12 @@ import CreateGroup from './CreateGroup/CreateGroup';
 class KiboChat extends React.Component {
 
   constructor(props) {
-  super(props);
-  this.state = {
-    chatListData: {},
-    visible: false
-  };
-}
+    super(props);
+    this.state = {
+      chatListData: {},
+      visible: false
+    };
+  }
 
   componentDidMount() {
         console.log('component did mount called in DemoComp.js');
@@ -20,7 +20,7 @@ class KiboChat extends React.Component {
         this.props.socket.on('connect', () => {
           console.log('connected to socket server');
           const data = {
-            phone: '+923341366328'
+            phone: '+923323800399'
           };
           this.props.socket.emit('join_platform_room', data);
         });

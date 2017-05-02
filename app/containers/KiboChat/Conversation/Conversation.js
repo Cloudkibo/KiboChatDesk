@@ -6,9 +6,9 @@ import MessageInfo from '../InfoSideBar/MessageInfo';
 import GroupInfo from '../InfoSideBar/GroupInfo';
 
 class Conversation extends React.Component {
-  render(){
-      if(false){ //check the true variable if message or group info is clicked
-      return(
+  render() {
+      if (false) { //check the true variable if message or group info is clicked
+      return (
         <div className="scrollbar-disable">
         <div className="col-md-8">
           <div>
@@ -60,10 +60,9 @@ class Conversation extends React.Component {
             <MessageInfo />
           </div>
         </div>
-      )
-    }
-    else{
-      return(
+      );
+    } else {
+      return (
 
           <div className="scrollbar-disable">
           <div>
@@ -112,7 +111,7 @@ class Conversation extends React.Component {
           </div>
           </div>
 
-      )
+      );
     }
   }
 }

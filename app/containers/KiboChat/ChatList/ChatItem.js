@@ -11,7 +11,6 @@ class ChatItem extends React.Component {
               <p className="small-text-size">{this.props.listItemData.msg}</p>
               <hr className="ba b--moon-gray" />
             </div>
-
         </div>
     );
   }
