@@ -1,8 +1,8 @@
 import React from 'react';
 
 class LoginInfo extends React.Component {
-  render(){
-    return(
+  render() {
+    return (
       <div className="login shadow-1">
         <div className="login-up">
           <input type="number" className="input-shadow input-number-position h2 f4" />
@@ -12,7 +12,8 @@ class LoginInfo extends React.Component {
             <br />
             <input type="checkbox" value="Keep me signed in" />
             <br />
-            <p className="small-text-size">To reduce mobile data usage, please connect your phone to wifi</p>
+            <p className="small-text-size">To reduce mobile data usage,
+            please connect your phone to wifi</p>
           </div>
         </div>
         <div className="login-bottom">
@@ -34,7 +35,7 @@ class LoginInfo extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

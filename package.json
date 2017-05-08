@@ -7,7 +7,7 @@
   "scripts": {
     "test": "npm test",
     "start": "electron main.js",
-    "watch": "watchify app/app.js -t babelify -o public/js/bundle.js --debug --verbose"
+    "watch": "watchify app/main.app.js -t babelify -o public/js/bundle.js --debug --verbose"
   },
   "repository": {
     "type": "git",
@@ -32,15 +32,17 @@
     "electron-prebuilt": "^0.36.0",
     "electron-reload": "^0.2.0",
     "jquery": "^2.2.3",
-    "react": "^0.14.8",
+    "react": "^15.0.1",
     "react-autocomplete": "^1.0.0-rc2",
     "react-bootstrap": "^0.30.8",
-    "react-dom": "^0.14.7",
+    "react-dom": "^15.0.1",
     "react-dropdown": "^1.2.1",
     "react-icons": "^2.2.3",
-    "react-redux": "^5.0.3",
+    "react-redux": "^4.1.2",
+    "react-router": "^2.6.0",
+    "react-router-redux": "^4.0.4",
     "react-sound": "^0.4.0",
-    "redux": "^3.6.0",
+    "redux": "^3.1.5",
     "socket.io-client": "^1.0.6",
     "soundmanager2": "^2.97.20150601-a",
     "tachyons": "^4.6.2",

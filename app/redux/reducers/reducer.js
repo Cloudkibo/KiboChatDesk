@@ -1,24 +1,11 @@
 import { combineReducers } from 'redux';
-import * as ActionTypes from '../constants/constants';
 
-const initialState = {
-  mobileData: {}
-};
-
-const initialDataLoad = (state = initialState, action) => {
-  switch (action.type) {
-    case ActionTypes.InitialDataLoad:
-      return {
-        mobileData: action.data
-      };
-
-    default:
-      return state;
-  }
-};
+import { connectInfo } from './connectinfo.reducer';
+import { chatListInfo } from './chatlist.reducer';
 
 const appReducer = combineReducers({
-  initialDataLoad
+  connectInfo,
+  chatListInfo
 });
 
 export default appReducer;

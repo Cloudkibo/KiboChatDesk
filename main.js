@@ -16,7 +16,7 @@ function createWindow () {
   //Browser window options
   const browserOptions = {
     width: 1429,
-    height: 802,
+    height: 800,
     maximizeable: false,
     icon:'public/img/logo.png'
   }

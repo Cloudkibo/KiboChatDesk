@@ -1,4 +1,7 @@
 import { createStore } from 'redux';
 import initialDataLoad from '../reducers/reducer';
 
-let store = createStore(initialDataLoad);
+export function configureStore(initialState = {}) {
+  const store = createStore(initialDataLoad, initialState);
+  return store;
+}
