@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import ChatList from './ChatList/ChatList';
 import Conversation from './Conversation/Conversation';
 import Contacts from '../Contacts/Contacts';
@@ -6,29 +8,27 @@ import CreateGroup from './CreateGroup/CreateGroup';
 
 class KiboChat extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      chatListData: {},
-      visible: false
-    };
+  constructor(props, context) {
+    super(props, context);
   }
 
   componentDidMount() {
 
   }
 
-
   render() {
     return (
     <div className="scrollbar-disable">
       <div className="col-md-4">
         {
-          this.state.visible &&
-          <ChatList chatListData={this.state.chatListData} />
+          //(this.props.chatListInfo.length > 0) &&
+          //<ChatList chatListData={this.props.chatListInfo} />
         }
         {/*<CreateGroup />*/}
-        {/*<Contacts />*/}
+        {
+          (this.props.contactListInfo.length > 0) &&
+          <Contacts contactListInfo={this.props.contactListInfo} />
+        }
       </div>
       <div className="col-md-8">
         <Conversation />
@@ -38,4 +38,18 @@ class KiboChat extends React.Component {
   }
 }
 
-export default KiboChat;
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    connectInfo: (state.connectInfo),
+    chatListInfo: (state.chatListInfo),
+    contactListInfo: (state.contactListInfo)
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  // todo do this later
+  return bindActionCreators({ }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(KiboChat);

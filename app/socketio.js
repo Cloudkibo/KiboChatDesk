@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 
-import { setId, setPhoneId, setConnectionStatus, setSocketStatus, loadChatList
- } from './redux/actions/action';
+import { setId, setPhoneId, setConnectionStatus, setSocketStatus, loadChatList,
+  loadGroupChatList, loadContactList } from './redux/actions/action';
 
 const socket = io('https://api.cloudkibo.com');
 let store;
@@ -30,11 +30,44 @@ socket.on('platform_room_message', (data) => {
   if (store.getState().connectInfo.mobileId === '') {
     store.dispatch(setPhoneId(data.from_connection_id));
     store.dispatch(setConnectionStatus(true));
+    sendSocketMessage('loading_conversation', { phone: '+923333864540' });
   }
-  console.log(data);
   if (data.type === 'loading_chatlist') {
-    store.dispatch(loadChatList(data.data));
-    console.log(store.getState());
+    const chatListDataArray = [];
+    for (let i = 0; i < data.data.length; i++) {
+      chatListDataArray.push({
+        date: data.data[i].date,
+        contact_phone: data.data[i].contact_phone,
+        msg: data.data[i].msg,
+        display_name: data.data[i].display_name,
+        pendingMsgs: data.data[i].pendingMsgs,
+        type: 'conversation'
+      });
+    }
+    store.dispatch(loadChatList(chatListDataArray));
+  } else if (data.type === 'loading_group_chatlist') {
+    for (let i = 0; i < data.data.length; i++) {
+      store.dispatch(loadGroupChatList({
+        date: data.data[i].date_creation,
+        contact_phone: data.data[i].last_sender,
+        msg: data.data[i].msg,
+        display_name: data.data[i].group_name,
+        pendingMsgs: data.data[i].unique_id,
+        type: 'group'
+      }));
+    }
+  } else if (data.type === 'loading_contacts') {
+    const contactListDataArray = [];
+    for (let i = 0; i < data.data.length; i++) {
+      contactListDataArray.push({
+        phone: data.data[i].phone,
+        detailsshared: data.data[i].detailsshared,
+        display_name: data.data[i].display_name,
+        status: data.data[i].status,
+        on_cloudkibo: data.data[i].on_cloudkibo
+      });
+    }
+    store.dispatch(loadContactList(contactListDataArray));
   }
 });
 
@@ -42,3 +75,13 @@ socket.on('disconnect', () => {
   console.log('disconnected from socket server');
   store.dispatch(setSocketStatus(true));
 });
+
+function sendSocketMessage(type, data) {
+  socket.emit('platform_room_message', {
+    phone: store.getState().connectInfo.number,
+    from_connection_id: store.getState().connectInfo.id,
+    to_connection_id: store.getState().connectInfo.mobileId,
+    type,
+    data
+  });
+}

@@ -7,3 +7,7 @@ export const UPDATE_SOCKET_STATE = 'UPDATE_SOCKET_STATE';
 
 // constants for chat list object
 export const LOAD_CHATLIST = 'LOAD_CHATLIST';
+export const LOAD_GROUP_CHATLIST = 'LOAD_GROUP_CHATLIST';
+
+// constants for contact list object
+export const LOAD_CONTACTLIST = 'LOAD_CONTACTLIST';

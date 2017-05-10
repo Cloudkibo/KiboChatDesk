@@ -41,3 +41,17 @@ export function loadChatList(data) {
     data
   };
 }
+
+export function loadGroupChatList(data) {
+  return {
+    type: ActionTypes.LOAD_GROUP_CHATLIST,
+    data
+  };
+}
+
+export function loadContactList(data) {
+  return {
+    type: ActionTypes.LOAD_CONTACTLIST,
+    data
+  };
+}
