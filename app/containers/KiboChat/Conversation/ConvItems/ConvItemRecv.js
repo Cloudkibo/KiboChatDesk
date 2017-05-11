@@ -1,21 +1,20 @@
 import React from 'react';
 
-class ConvItemRecv extends React.Component{
-  render(){
-    if(false){ //renders if the item is text item
-      return(
+class ConvItemRecv extends React.Component {
+  render() {
+    if (this.props.listItemData.type === 'chat') { //renders if the item is text item
+      return (
         <div className="">
           <div className="">
             <div className="talk-bubble round ml3">
               <p className="talktext">
-                Incoming - This is an incoming message
+                { this.props.listItemData.msg }
               </p>
             </div>
           </div>
         </div>
       )
-    }
-    else{ //renders if the item is attached item
+    } else { //renders if the item is attached item
       if(true){
         {/*here we'll filter the attachments on the basis of image, attached file */}
         return(
@@ -30,7 +29,7 @@ class ConvItemRecv extends React.Component{
         )
       }
       else {
-        return(
+        return (
           <div>
             <div className="tc talk-bubble round ml3">
 

@@ -1,13 +1,56 @@
 import React from 'react';
-import {ButtonToolbar, NavDropdown, MenuItem, Navbar, Nav } from 'react-bootstrap';
+import { ButtonToolbar, NavDropdown, MenuItem, Navbar, Nav } from 'react-bootstrap';
 import ConvItemSent from './ConvItems/ConvItemSent';
 import ConvItemRecv from './ConvItems/ConvItemRecv';
 import MessageInfo from '../InfoSideBar/MessageInfo';
 import GroupInfo from '../InfoSideBar/GroupInfo';
 
 class Conversation extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchValue: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(evt) {
+    this.setState({
+      searchValue: evt.target.value
+    });
+    console.log(evt.target.value);
+  }
+
   render() {
-      if (false) { //check the true variable if message or group info is clicked
+    const items = [];
+    if (this.state.searchValue === '') {
+      for (let i = 0; i < this.props.conversationListInfo.length; i++) {
+        if (!this.props.conversationListInfo[i].is_archive) {
+          if (this.props.conversationListInfo[i].fromperson ===
+            this.props.connectInfo.number) {
+              items.push(<ConvItemSent listItemData={this.props.conversationListInfo[i]} key={this.props.conversationListInfo[i].uniqueid} />);
+            } else {
+              items.push(<ConvItemRecv listItemData={this.props.conversationListInfo[i]} key={this.props.conversationListInfo[i].uniqueid} />);
+            }
+        }
+      }
+    } else {
+      for (let i = 0; i < this.props.conversationListInfo.length; i++) {
+        if (!this.props.conversationListInfo[i].is_archive) {
+          if (this.props.conversationListInfo[i].msg.includes(this.state.searchValue)) {
+            if (this.props.conversationListInfo[i].fromperson ===
+              this.props.connectInfo.number) {
+                items.push(<ConvItemSent listItemData={this.props.conversationListInfo[i]} key={this.props.conversationListInfo[i].uniqueid} />);
+              } else {
+                items.push(<ConvItemRecv listItemData={this.props.conversationListInfo[i]} key={this.props.conversationListInfo[i].uniqueid} />);
+              }
+          }
+        }
+      }
+    }
+
+    if (false) { //check the true variable if message or group info is clicked
       return (
         <div className="scrollbar-disable">
         <div className="col-md-8">
@@ -16,7 +59,7 @@ class Conversation extends React.Component {
             <Navbar.Header>
               <img className="pull-left mt1 margin-right-small br-100 ba b--black-10" src={'./public/img/android.png'} alt="DP" width="50" height="50" />
               <Navbar.Brand>
-                User Name
+                User Name 1
               </Navbar.Brand>
             </Navbar.Header>
             <Nav>
@@ -33,16 +76,7 @@ class Conversation extends React.Component {
         </div>
 
           <div className=" scrollbar-enable">
-            {/* put logic to check if the message is incoming or outgoing */ }
-            <ConvItemSent />
-            <ConvItemRecv />
-            <ConvItemSent />
-            <ConvItemRecv />
-            <ConvItemRecv />
-            <ConvItemRecv />
-            <ConvItemRecv />
-            <ConvItemRecv />
-            <ConvItemSent />
+            { items }
           </div>
 
           <div className="message-input">
@@ -71,7 +105,7 @@ class Conversation extends React.Component {
               <Navbar.Header>
                 <img className="pull-left mt1 margin-right-small br-100 ba b--black-10" src={'./public/img/android.png'} alt="DP" width="50" height="50" />
                 <Navbar.Brand>
-                  User Name
+                  User Name 2
                 </Navbar.Brand>
               </Navbar.Header>
               <Nav>
@@ -87,16 +121,7 @@ class Conversation extends React.Component {
           </div>
 
             <div className="conv-container scrollbar-enable">
-              {/* put logic to check if the message is incoming or outgoing */ }
-              <ConvItemSent />
-              <ConvItemRecv />
-              <ConvItemSent />
-              <ConvItemRecv />
-              <ConvItemRecv />
-              <ConvItemRecv />
-              <ConvItemRecv />
-              <ConvItemRecv />
-              <ConvItemSent />
+              { items }
             </div>
 
             <div className="message-input">

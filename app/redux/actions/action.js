@@ -49,9 +49,44 @@ export function loadGroupChatList(data) {
   };
 }
 
+export function loadArchiveChatList(data) {
+  return {
+    type: ActionTypes.LOAD_ARCHIVELIST,
+    data
+  };
+}
+
 export function loadContactList(data) {
   return {
     type: ActionTypes.LOAD_CONTACTLIST,
+    data
+  };
+}
+
+export function loadConversationList(data) {
+  return {
+    type: ActionTypes.LOAD_CONVERSATION,
+    data
+  };
+}
+
+export function loadGroupList(data) {
+  return {
+    type: ActionTypes.LOAD_GROUPLIST,
+    data
+  };
+}
+
+export function loadGroupMemberList(data) {
+  return {
+    type: ActionTypes.LOAD_GROUPMEMBER_LIST,
+    data
+  };
+}
+
+export function refreshGroupList(data) {
+  return {
+    type: ActionTypes.REFRESH_GROUPS,
     data
   };
 }

@@ -20,7 +20,7 @@ class ChatList extends React.Component {
   }
 
   render() {
-    let items = [];
+    const items = [];
     if (this.state.searchValue === '') {
       for (let i = 0; i < this.props.chatListData.length; i++) {
         items.push(<ChatItem listItemData={this.props.chatListData[i]} key={i} />);

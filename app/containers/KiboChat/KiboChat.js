@@ -21,17 +21,17 @@ class KiboChat extends React.Component {
     <div className="scrollbar-disable">
       <div className="col-md-4">
         {
-          //(this.props.chatListInfo.length > 0) &&
-          //<ChatList chatListData={this.props.chatListInfo} />
+          (this.props.chatListInfo.length > 0) &&
+          <ChatList chatListData={this.props.chatListInfo} />
         }
         {/*<CreateGroup />*/}
         {
-          (this.props.contactListInfo.length > 0) &&
-          <Contacts contactListInfo={this.props.contactListInfo} />
+          //(this.props.contactListInfo.length > 0) &&
+          //<Contacts contactListInfo={this.props.contactListInfo} />
         }
       </div>
       <div className="col-md-8">
-        <Conversation />
+        <Conversation conversationListInfo={this.props.conversationListInfo} connectInfo={this.props.connectInfo} />
       </div>
     </div>
   );
@@ -43,7 +43,8 @@ function mapStateToProps(state) {
   return {
     connectInfo: (state.connectInfo),
     chatListInfo: (state.chatListInfo),
-    contactListInfo: (state.contactListInfo)
+    contactListInfo: (state.contactListInfo),
+    conversationListInfo: (state.conversationListInfo)
   };
 }
 

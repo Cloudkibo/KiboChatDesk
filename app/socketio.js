@@ -1,7 +1,9 @@
 import io from 'socket.io-client';
 
 import { setId, setPhoneId, setConnectionStatus, setSocketStatus, loadChatList,
-  loadGroupChatList, loadContactList } from './redux/actions/action';
+  loadGroupChatList, loadContactList, loadConversationList, loadArchiveChatList,
+  loadGroupList, loadGroupMemberList, refreshGroupList
+} from './redux/actions/action';
 
 const socket = io('https://api.cloudkibo.com');
 let store;
@@ -30,7 +32,6 @@ socket.on('platform_room_message', (data) => {
   if (store.getState().connectInfo.mobileId === '') {
     store.dispatch(setPhoneId(data.from_connection_id));
     store.dispatch(setConnectionStatus(true));
-    sendSocketMessage('loading_conversation', { phone: '+923333864540' });
   }
   if (data.type === 'loading_chatlist') {
     const chatListDataArray = [];
@@ -42,6 +43,18 @@ socket.on('platform_room_message', (data) => {
         display_name: data.data[i].display_name,
         pendingMsgs: data.data[i].pendingMsgs,
         type: 'conversation'
+      });
+      if (i === 0) sendSocketMessage('loading_conversation', { phone: data.data[i].contact_phone });
+      // for testing purpose
+      sendSocketMessage('new_message_sent', {
+        to: data.data[i].contact_phone,
+        from: store.getState().connectInfo.number,
+        fromFullName: 'abc',
+        msg: 'abc',
+        date: Date.now(),
+        type: 'chat',
+        uniqueid: '342342432424sadfasfd',
+        file_type: ''
       });
     }
     store.dispatch(loadChatList(chatListDataArray));
@@ -56,6 +69,19 @@ socket.on('platform_room_message', (data) => {
         type: 'group'
       }));
     }
+  } else if (data.type === 'loading_archive') {
+    const chatListDataArray = [];
+    for (let i = 0; i < data.data.length; i++) {
+      chatListDataArray.push({
+        date: data.data[i].date,
+        contact_phone: data.data[i].contact_phone,
+        msg: data.data[i].msg,
+        display_name: data.data[i].display_name,
+        pendingMsgs: data.data[i].pendingMsgs,
+        type: 'conversation'
+      });
+    }
+    store.dispatch(loadArchiveChatList(chatListDataArray));
   } else if (data.type === 'loading_contacts') {
     const contactListDataArray = [];
     for (let i = 0; i < data.data.length; i++) {
@@ -68,6 +94,44 @@ socket.on('platform_room_message', (data) => {
       });
     }
     store.dispatch(loadContactList(contactListDataArray));
+  } else if (data.type === 'loading_conversation') {
+    const conversationListDataArray = [];
+    for (let i = 0; i < data.data.length; i++) {
+      conversationListDataArray.push({
+        date: data.data[i].date,
+        file_type: data.data[i].file_type,
+        fromFullName: data.data[i].fromFullName,
+        status: data.data[i].status,
+        fromperson: data.data[i].fromperson,
+        msg: data.data[i].msg,
+        toperson: data.data[i].toperson,
+        type: data.data[i].type,
+        uniqueid: data.data[i].uniqueid,
+        is_archive: false
+      });
+    }
+    store.dispatch(loadConversationList(conversationListDataArray));
+  } else if (data.type === 'loading_groups') {
+    store.dispatch(refreshGroupList([]));
+    const groupListDataArray = [];
+    for (let i = 0; i < data.data.length; i++) {
+      groupListDataArray.push({
+        date_creation: data.data[i].date_creation,
+        group_name: data.data[i].group_name,
+        is_mute: data.data[i].is_mute,
+        unique_id: data.data[i].unique_id
+      });
+    }
+    store.dispatch(loadGroupList(groupListDataArray));
+  } else if (data.type === 'loading_group_members') {
+    for (let i = 0; i < data.data.length; i++) {
+      store.dispatch(loadGroupMemberList({
+        date_joined: data.data[i].date_joined,
+        group_id: data.data[i].group_id,
+        isAdmin: (data.data[i].isAdmin === '1'),
+        phone: data.data[i].phone
+      }));
+    }
   }
 });
 
