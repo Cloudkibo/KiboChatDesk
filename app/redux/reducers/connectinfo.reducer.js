@@ -5,7 +5,8 @@ const initialState = {
   id: '',
   mobileId: '',
   isConnected: false,
-  isSocketConnected: false
+  isSocketConnected: false,
+  image: './public/img/android.png' // todo remove this, only for testing
 };
 
 export function connectInfo(state = initialState, action) {
@@ -33,6 +34,11 @@ export function connectInfo(state = initialState, action) {
     case ActionTypes.UPDATE_SOCKET_STATE:
       return Object.assign({}, state, {
         isSocketConnected: action.data
+      });
+
+    case ActionTypes.ADD_IMAGE:
+      return Object.assign({}, state, {
+        image: action.data
       });
 
     default:

@@ -12,8 +12,8 @@ import { setPhoneNumber } from './redux/actions/action';
 const store = configureStore(window.__INITIAL_STATE__);
 const dest = document.getElementById('content');
 
-//store.dispatch(setPhoneNumber('+923323800399'));
-store.dispatch(setPhoneNumber('+923201211991'));
+store.dispatch(setPhoneNumber('+923323800399'));
+//store.dispatch(setPhoneNumber('+923201211991'));
 
 initiateSocket(store);
 

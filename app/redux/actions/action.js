@@ -90,3 +90,10 @@ export function refreshGroupList(data) {
     data
   };
 }
+
+export function addImage(data) { // todo remove this
+  return {
+    type: ActionTypes.ADD_IMAGE,
+    data
+  };
+}

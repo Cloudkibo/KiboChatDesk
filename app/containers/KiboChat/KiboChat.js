@@ -39,7 +39,7 @@ class KiboChat extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
+  //console.log(state);
   return {
     connectInfo: (state.connectInfo),
     chatListInfo: (state.chatListInfo),

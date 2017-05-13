@@ -23,3 +23,5 @@ export const LOAD_GROUPLIST = 'LOAD_GROUPLIST';
 export const REFRESH_GROUPS = 'REFRESH_GROUPS';
 
 export const LOAD_GROUPMEMBER_LIST = 'LOAD_GROUPMEMBER_LIST';
+
+export const ADD_IMAGE = 'ADD_IMAGE'; // todo remove this

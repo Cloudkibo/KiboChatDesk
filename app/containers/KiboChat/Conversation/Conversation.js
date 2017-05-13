@@ -29,9 +29,9 @@ class Conversation extends React.Component {
         if (!this.props.conversationListInfo[i].is_archive) {
           if (this.props.conversationListInfo[i].fromperson ===
             this.props.connectInfo.number) {
-              items.push(<ConvItemSent listItemData={this.props.conversationListInfo[i]} key={this.props.conversationListInfo[i].uniqueid} />);
+              items.push(<ConvItemSent listItemData={this.props.conversationListInfo[i]} key={this.props.conversationListInfo[i].uniqueid} connectInfo={this.props.connectInfo} />);
             } else {
-              items.push(<ConvItemRecv listItemData={this.props.conversationListInfo[i]} key={this.props.conversationListInfo[i].uniqueid} />);
+              items.push(<ConvItemRecv listItemData={this.props.conversationListInfo[i]} key={this.props.conversationListInfo[i].uniqueid} connectInfo={this.props.connectInfo} />);
             }
         }
       }
@@ -41,9 +41,9 @@ class Conversation extends React.Component {
           if (this.props.conversationListInfo[i].msg.includes(this.state.searchValue)) {
             if (this.props.conversationListInfo[i].fromperson ===
               this.props.connectInfo.number) {
-                items.push(<ConvItemSent listItemData={this.props.conversationListInfo[i]} key={this.props.conversationListInfo[i].uniqueid} />);
+                items.push(<ConvItemSent listItemData={this.props.conversationListInfo[i]} key={this.props.conversationListInfo[i].uniqueid} connectInfo={this.props.connectInfo} />);
               } else {
-                items.push(<ConvItemRecv listItemData={this.props.conversationListInfo[i]} key={this.props.conversationListInfo[i].uniqueid} />);
+                items.push(<ConvItemRecv listItemData={this.props.conversationListInfo[i]} key={this.props.conversationListInfo[i].uniqueid} connectInfo={this.props.connectInfo} />);
               }
           }
         }

@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 
 import { setId, setPhoneId, setConnectionStatus, setSocketStatus, loadChatList,
   loadGroupChatList, loadContactList, loadConversationList, loadArchiveChatList,
-  loadGroupList, loadGroupMemberList, refreshGroupList
+  loadGroupList, loadGroupMemberList, refreshGroupList, addImage
 } from './redux/actions/action';
 
 const socket = io('https://api.cloudkibo.com');
@@ -28,6 +28,9 @@ socket.on('joined_platform_room', (data) => {
   store.dispatch(setId(data));
 });
 
+const screenViewer = document.getElementById('screenViewer');
+let buf;
+let chunks = []; let count=0;
 socket.on('platform_room_message', (data) => {
   if (store.getState().connectInfo.mobileId === '') {
     store.dispatch(setPhoneId(data.from_connection_id));
@@ -51,7 +54,6 @@ socket.on('platform_room_message', (data) => {
         from: store.getState().connectInfo.number,
         fromFullName: 'abc',
         msg: 'abc',
-        date: Date.now(),
         type: 'chat',
         uniqueid: '342342432424sadfasfd',
         file_type: ''
@@ -131,6 +133,22 @@ socket.on('platform_room_message', (data) => {
         isAdmin: (data.data[i].isAdmin === '1'),
         phone: data.data[i].phone
       }));
+    }
+  } else if (data.type === 'mobile_sending_chunk') {
+    console.log(data);
+    buf = new Uint8ClampedArray(data.data.chunk);
+    var imgdata = new Uint8ClampedArray(data.data.chunk);
+    console.log('image chunk')
+    buf.set(imgdata, count);
+    chunks[count] = data.data.chunk;
+    count += imgdata.byteLength;
+    if (count === buf.byteLength) {
+      // we're done: all data chunks have been received
+      //renderPhoto(buf);
+      var builder = new Blob(chunks, buf.type);
+      console.log('full image received');
+      store.dispatch(addImage(URL.createObjectURL(builder)));
+      screenViewer.src = URL.createObjectURL(builder);
     }
   }
 });

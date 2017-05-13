@@ -23,6 +23,10 @@ class ConvItemSent extends React.Component {
               <p className="talktext">
                 Attachment { this.props.listItemData.type }
               </p>
+              <img className="br-100 ba b--black-10" src={this.props.connectInfo.image} alt="DP" width="100" height="100" />
+              <div className="text-center">
+                <button type="button" className="mt4 dim br-pill ph3 pv2 mb2 dib white bg-light-silver f6">Download Attachment</button>
+              </div>
             </div>
           </div>
           <div className="clearfix" />
