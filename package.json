@@ -7,7 +7,7 @@
   "scripts": {
     "test": "npm test",
     "start": "electron main.js",
-    "watch": "watchify app/main.app.js -t babelify -o public/js/bundle.js --debug --verbose"
+    "watch": "watchify app/app.js -t babelify -o public/js/bundle.js --debug --verbose"
   },
   "repository": {
     "type": "git",

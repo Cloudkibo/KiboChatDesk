@@ -49,15 +49,15 @@ socket.on('platform_room_message', (data) => {
       });
       if (i === 0) sendSocketMessage('loading_conversation', { phone: data.data[i].contact_phone });
       // for testing purpose
-      sendSocketMessage('new_message_sent', {
-        to: data.data[i].contact_phone,
-        from: store.getState().connectInfo.number,
-        fromFullName: 'abc',
-        msg: 'abc',
-        type: 'chat',
-        uniqueid: '342342432424sadfasfd',
-        file_type: ''
-      });
+      // sendSocketMessage('new_message_sent', {
+      //   to: data.data[i].contact_phone,
+      //   from: store.getState().connectInfo.number,
+      //   fromFullName: 'abc',
+      //   msg: 'abc',
+      //   type: 'chat',
+      //   uniqueid: '342342432424sadfasfd',
+      //   file_type: ''
+      // });
     }
     store.dispatch(loadChatList(chatListDataArray));
   } else if (data.type === 'loading_group_chatlist') {
@@ -158,7 +158,8 @@ socket.on('disconnect', () => {
   store.dispatch(setSocketStatus(true));
 });
 
-function sendSocketMessage(type, data) {
+export function sendSocketMessage(type, data) {
+  console.log(`socket message called: ${JSON.stringify(data)}`);
   socket.emit('platform_room_message', {
     phone: store.getState().connectInfo.number,
     from_connection_id: store.getState().connectInfo.id,
